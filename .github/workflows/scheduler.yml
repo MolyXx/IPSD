@@ -24,10 +24,13 @@ jobs:
       - name: Run script
         run: python stream.py
 
-      - name: Commit and push changes
+      - name: Configure Git
         run: |
           git config --local user.name "GitHub Action"
           git config --local user.email "action@github.com"
+
+      - name: Commit and push changes
+        run: |
           git add weather_data.csv
           git commit -m "Update weather data"
           git push
