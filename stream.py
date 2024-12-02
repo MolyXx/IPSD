@@ -6,7 +6,7 @@ import os
 API_KEY = 'VGBQCJT36BZT8ZM38J3SNWS9Y'
 LOCATION = 'Jakarta,ID'  # Lokasi cuaca yang diinginkan
 BASE_URL = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline'
-EXCEL_FILE = '/content/weather_data.xlsx'  # Menyimpan file di Google Colab
+EXCEL_FILE = 'weather_data.xlsx'  # Menyimpan file di Google Colab
 
 # Fungsi untuk mengambil data dari API Visual Crossing
 def fetch_weather_data():
