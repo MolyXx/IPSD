@@ -28,3 +28,9 @@ jobs:
       - name: Run Weather Fetcher Script
         run: |
           python stream.py  # Ganti dengan nama file Anda
+
+      - name: Upload Excel File
+        uses: actions/upload-artifact@v2
+        with:
+          name: weather_data
+          path: weather_data.xlsx
