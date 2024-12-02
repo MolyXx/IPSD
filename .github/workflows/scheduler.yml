@@ -6,28 +6,30 @@ on:
     workflow_dispatch:  # Memungkinkan trigger manual
 
 jobs:
-  fetch-weather:
+  update-weather:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Setup Python
-        uses: actions/setup-python@v2
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      - name: Install Dependencies
-        run: |
-          pip install requests pandas openpyxl
+      - name: Install dependencies
+        run: pip install pandas requests
 
-      - name: Run Weather Fetcher Script
-        run: |
-          python stream.py  # Ganti dengan nama file Anda
+      - name: Run script
+        run: python stream.py
 
-      - name: Upload Excel File
-        uses: actions/upload-artifact@v4
-        with:
-          name: weather_data
-          path: weather_data.xlsx
+      - name: Commit and push changes
+        run: |
+          git config --local user.name "GitHub Action"
+          git config --local user.email "action@github.com"
+          git add weather_data.csv
+          git commit -m "Update weather data"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
