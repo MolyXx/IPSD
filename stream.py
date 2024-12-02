@@ -9,22 +9,15 @@ LOCATION = 'Jakarta,ID'  # Lokasi cuaca yang diinginkan
 BASE_URL = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline'
 CSV_FILE = 'weather_data.csv'
 
-# Fungsi untuk mengambil data dari API Visual Crossing
+# Fungsi untuk mengambil semua data dari API Visual Crossing
 def fetch_weather_data():
     url = f'{BASE_URL}/{LOCATION}?key={API_KEY}&unitGroup=metric&include=fcst'
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
         forecasts = data['days']
-        return [
-            {
-                'datetime': forecast['datetime'],
-                'temperature': forecast['temp'],
-                'humidity': forecast['humidity'],
-                'condition': forecast['conditions']
-            }
-            for forecast in forecasts
-        ]
+        # Mengembalikan semua data dalam setiap entri
+        return forecasts
     else:
         print('Gagal mengambil data cuaca.')
         return []
