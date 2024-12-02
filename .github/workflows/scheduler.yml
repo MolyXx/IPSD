@@ -1,9 +1,12 @@
 name: Scheduled Weather Fetcher
 
 on:
-  schedule:
-    - cron: '0 * * * *'  # Setiap jam
-  workflow_dispatch:  # Memungkinkan trigger manual
+    push:
+      branches:
+        - main
+    schedule:
+        - cron: '0 * * * *'  # Setiap jam
+    workflow_dispatch:  # Memungkinkan trigger manual
 
 jobs:
   fetch-weather:
