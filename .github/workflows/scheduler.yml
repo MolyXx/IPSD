@@ -27,7 +27,7 @@ jobs:
           python stream.py  # Ganti dengan nama file Anda
 
       - name: Upload Excel File
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: weather_data
           path: weather_data.xlsx
